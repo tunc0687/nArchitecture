@@ -24,5 +24,11 @@ namespace RentACar.Application.Features.Brands.Rules
             IPaginate<Brand> result = await _brandRepository.GetListAsync(b => b.Name == name);
             if (result.Items.Any()) throw new BusinessException("Brand name exists.");
         }
+
+        public async Task BrandIdIsThere(int id)
+        {
+            Brand? result = await _brandRepository.GetAsync(b => b.Id == id);
+            if (result == null) throw new BusinessException("Brand id is null.");
+        }
     }
 }
