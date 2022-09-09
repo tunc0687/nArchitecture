@@ -25,10 +25,9 @@ namespace RentACar.Application.Features.Brands.Rules
             if (result.Items.Any()) throw new BusinessException("Brand name exists.");
         }
 
-        public async Task BrandIdIsThere(int id)
+        public void BrandShouldExistWhenRequested(Brand brand)
         {
-            Brand? result = await _brandRepository.GetAsync(b => b.Id == id);
-            if (result == null) throw new BusinessException("Brand id is null.");
+            if (brand == null) throw new BusinessException("Brand does not exists.");
         }
     }
 }

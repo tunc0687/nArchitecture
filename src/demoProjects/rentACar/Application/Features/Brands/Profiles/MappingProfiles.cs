@@ -5,6 +5,7 @@ using RentACar.Application.Features.Brands.Commands.DeleteBrand;
 using RentACar.Application.Features.Brands.Commands.UpdateBrand;
 using RentACar.Application.Features.Brands.Dtos;
 using RentACar.Application.Features.Brands.Models;
+using RentACar.Application.Features.Brands.Queries.GetByIdBrand;
 using RentACar.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,9 @@ namespace RentACar.Application.Features.Brands.Profiles
 
             CreateMap<BrandListModel, IPaginate<Brand>>().ReverseMap();
             CreateMap<BrandListDto, Brand>().ReverseMap();
+
+            CreateMap<BrandGetByIdDto, Brand>().ReverseMap();
+            CreateMap<GetByIdBrandQuery, Brand>().ReverseMap();
         }
     }
 }

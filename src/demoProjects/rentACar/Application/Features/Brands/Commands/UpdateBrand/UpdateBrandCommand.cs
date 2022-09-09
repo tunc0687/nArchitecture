@@ -32,11 +32,12 @@ namespace RentACar.Application.Features.Brands.Commands.UpdateBrand
 
             public async Task<UpdatedBrandDto> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
             {
-                //await _brandBusinessRules.BrandIdIsThere(request.Id);
+                Brand? brand = await _brandRepository.GetAsync(x => x.Id == request.Id);
+                _brandBusinessRules.BrandShouldExistWhenRequested(brand);
                 await _brandBusinessRules.BrandNameCanNotBeDuplicatedWhenInserted(request.Name);
 
-                Brand mappedBrand = _mapper.Map<Brand>(request);
-                Brand updatedBrand = await _brandRepository.UpdateAsync(mappedBrand);
+                _mapper.Map(request, brand);
+                Brand updatedBrand = await _brandRepository.UpdateAsync(brand);
                 UpdatedBrandDto updatedBrandDto = _mapper.Map<UpdatedBrandDto>(updatedBrand);
 
                 return updatedBrandDto;

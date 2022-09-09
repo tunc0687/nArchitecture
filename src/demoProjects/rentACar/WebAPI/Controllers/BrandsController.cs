@@ -6,7 +6,8 @@ using RentACar.Application.Features.Brands.Commands.DeleteBrand;
 using RentACar.Application.Features.Brands.Commands.UpdateBrand;
 using RentACar.Application.Features.Brands.Dtos;
 using RentACar.Application.Features.Brands.Models;
-using RentACar.Application.Features.Brands.Queries.GetAllBrand;
+using RentACar.Application.Features.Brands.Queries.GetByIdBrand;
+using RentACar.Application.Features.Brands.Queries.GetListBrand;
 
 namespace RentACar.WebAPI.Controllers
 {
@@ -40,6 +41,13 @@ namespace RentACar.WebAPI.Controllers
         {
             GetListBrandQuery getListBrandQuery = new() { PageRequest = pageRequest};
             BrandListModel result = await Mediator.Send(getListBrandQuery);
+            return Ok(result);
+        }
+
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] GetByIdBrandQuery getByIdBrandQuery)
+        {
+            BrandGetByIdDto result = await Mediator.Send(getByIdBrandQuery);
             return Ok(result);
         }
     }

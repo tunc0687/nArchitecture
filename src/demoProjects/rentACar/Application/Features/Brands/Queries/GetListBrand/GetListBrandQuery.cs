@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RentACar.Application.Features.Brands.Queries.GetAllBrand
+namespace RentACar.Application.Features.Brands.Queries.GetListBrand
 {
     public class GetListBrandQuery : IRequest<BrandListModel>
     {
